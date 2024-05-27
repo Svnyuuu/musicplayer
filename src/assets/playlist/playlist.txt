@@ -1,0 +1,4 @@
+D:\ZY\Code\java\src\assets\songs\Bubble Gum.mp3
+D:\ZY\Code\java\src\assets\songs\How Sweet.mp3
+D:\ZY\Code\java\src\assets\songs\Supernova.mp3
+D:\ZY\Code\java\src\assets\songs\Tropic Fuse - French Fuse.mp3
