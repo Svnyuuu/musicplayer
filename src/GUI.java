@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Hashtable;
+import java.io.IOException;
 // import org.apache.commons.io.FilenameUtils;
 // import com.example.MySliderUI;
 // import java.net.URL;
@@ -80,7 +81,7 @@ public class GUI extends JFrame {
         jFileChooser.setFileFilter(new FileNameExtensionFilter("MP3 Files", "mp3"));
 
         addGuiComponents();
-        addlyrics();
+        // addlyrics();
     }
 
     private void addlyrics() {
@@ -92,9 +93,10 @@ public class GUI extends JFrame {
         // lyrics.setHorizontalAlignment(SwingConstants.CENTER);
         // add(lyrics);
         lyricsArea = new JTextArea(5, 20);
+        // lyricsArea.setBounds(300,20, 300, 500);
         lyricsArea.setLineWrap(true);
         lyricsArea.setWrapStyleWord(true);
-
+        lyricsArea.setText("这里是歌词");
         // 创建一个滚动面板，并将文本区域添加到滚动面板中
         lyricsScrollPane = new JScrollPane(lyricsArea);
 
@@ -117,6 +119,11 @@ public class GUI extends JFrame {
         // 加载 GIF 图像
         // ImageIcon gifIcon = loadImage("src/assets/icon/Supernova.mv");
         ImageIcon gifIcon = loadImage("src/assets/icon/playgif7.gif");
+        // ImageIcon gifIcon = loadImage("src/assets/icon/g1.gif");
+        //随机刷新gif
+        // String[] gifPath = {"src/assets/icon/g1.gif", "src/assets/icon/g2.gif", "src/assets/icon/g3.gif"};
+        // int index = (int) (Math.random() * 3);
+        // ImageIcon gifIcon = loadImage(gifPath[index]);
         JLabel label = new JLabel(gifIcon);
         label.setBounds(30, 134, 300, 300);
         add(label);
@@ -384,6 +391,49 @@ public class GUI extends JFrame {
             }
         });
         playbackBtns.add(loadSong);
+
+                // JButton linkButton = new JButton("MV");
+                // linkButton.addActionListener(new ActionListener() {
+                //     @Override
+                //     public void actionPerformed(ActionEvent e) {
+                //         // String songTitle = songTitle;
+                //         // String mvFilePath = "path/to/mv/" + songTitle + ".mp4";
+                //         String mvFilePath = "src/assets/icon/Supernova.mv";
+                //         try {
+                //             Desktop.getDesktop().open(new File(mvFilePath));
+                //         } catch (IOException ex) {
+                //             ex.printStackTrace();
+                //         }
+                //     }
+                // });
+                // playbackBtns.add(linkButton);
+        //mp4按钮 打开电脑上的Media Player软件播放mv
+        JButton linkButton = new JButton("mv");
+        linkButton.setFont(new Font("comic sans ms", Font.BOLD, 20));
+        linkButton.setBorderPainted(false);
+        linkButton.setBackground(null);
+        linkButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // String songTitle = songTitle;
+                    // String mvFilePath = "path/to/mv/" + songTitle + ".mp4";
+                    JFileChooser fileChooser = new JFileChooser();
+                    fileChooser.setCurrentDirectory(new File("D:/ZY/Code/java/src/assets/mv"));
+                    fileChooser.setDialogTitle("Select MV File");
+                    int result = fileChooser.showOpenDialog(GUI.this);
+                    if (result == JFileChooser.APPROVE_OPTION) {
+                        File selectedFile = fileChooser.getSelectedFile();
+                        String mvFilePath = selectedFile.getAbsolutePath();
+                        try {
+                            Desktop.getDesktop().open(new File(mvFilePath));
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                } // Add this closing brace
+            });
+        playbackBtns.add(linkButton);
+
     }
 
     // // 静音按键
