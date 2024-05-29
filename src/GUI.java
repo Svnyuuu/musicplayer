@@ -35,6 +35,8 @@ public class GUI extends JFrame {
     private JTextArea lyricsArea;
     private JScrollPane lyricsScrollPane;
 
+    JTextPane textLyrics;
+
     public GUI() {
 
         // 调用JFrame构造函数来配置GUI并设置标题
@@ -79,30 +81,39 @@ public class GUI extends JFrame {
 
         // 过滤文件浏览，只显示.mp3文件
         jFileChooser.setFileFilter(new FileNameExtensionFilter("MP3 Files", "mp3"));
-
+        
+        
+        textLyrics=new JTextPane();  
+        textLyrics.setBounds(20,100,200,100);
+        textLyrics.setForeground(Color.white);
+        textLyrics.setOpaque(false);
+        add(textLyrics);    
+        textLyrics.setText("haloooooooo\nnohalo");
+        
         addGuiComponents();
+
         // addlyrics();
     }
 
-    private void addlyrics() {
-        // // 歌词
-        // JLabel lyrics = new JLabel("歌词");
-        // lyrics.setBounds(0, 500, getWidth() - 10, 30);
-        // lyrics.setFont(new Font("华文行楷", Font.BOLD, 24));
-        // lyrics.setForeground(TEXT_COLOR);
-        // lyrics.setHorizontalAlignment(SwingConstants.CENTER);
-        // add(lyrics);
-        lyricsArea = new JTextArea(5, 20);
-        // lyricsArea.setBounds(300,20, 300, 500);
-        lyricsArea.setLineWrap(true);
-        lyricsArea.setWrapStyleWord(true);
-        lyricsArea.setText("这里是歌词");
-        // 创建一个滚动面板，并将文本区域添加到滚动面板中
-        lyricsScrollPane = new JScrollPane(lyricsArea);
+    // private void addlyrics() {
+    //     // // 歌词
+    //     // JLabel lyrics = new JLabel("歌词");
+    //     // lyrics.setBounds(0, 500, getWidth() - 10, 30);
+    //     // lyrics.setFont(new Font("华文行楷", Font.BOLD, 24));
+    //     // lyrics.setForeground(TEXT_COLOR);
+    //     // lyrics.setHorizontalAlignment(SwingConstants.CENTER);
+    //     // add(lyrics);
+    //     lyricsArea = new JTextArea(5, 20);
+    //     // lyricsArea.setBounds(300,20, 300, 500);
+    //     lyricsArea.setLineWrap(true);
+    //     lyricsArea.setWrapStyleWord(true);
+    //     lyricsArea.setText("这里是歌词");
+    //     // 创建一个滚动面板，并将文本区域添加到滚动面板中
+    //     lyricsScrollPane = new JScrollPane(lyricsArea);
 
-        // 将滚动面板添加到GUI中
-        this.add(lyricsScrollPane, BorderLayout.EAST);
-    }
+    //     // 将滚动面板添加到GUI中
+    //     this.add(lyricsScrollPane, BorderLayout.EAST);
+    // }
 
     private void addGuiComponents() {
         // 添加工具栏
