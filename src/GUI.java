@@ -21,7 +21,7 @@ public class GUI extends JFrame {
     public static final Color TEXT_COLOR = Color.WHITE;
 
     private MusicPlay musicPlayer;
-
+    JLabel playTime;//播放进度条控件
     // private Volume volume;
 
     // 允许在应用程序中使用文件浏览
@@ -46,7 +46,7 @@ public class GUI extends JFrame {
 
         // 设置标题图标
         try {
-            setIconImage(ImageIO.read(new File("src/assets/pito.png")));
+            setIconImage(ImageIO.read(new File("src\\assets\\icon\\pito.png")));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -83,12 +83,30 @@ public class GUI extends JFrame {
         jFileChooser.setFileFilter(new FileNameExtensionFilter("MP3 Files", "mp3"));
         
         
-        textLyrics=new JTextPane();  
-        textLyrics.setBounds(20,100,200,100);
-        textLyrics.setForeground(Color.white);
-        textLyrics.setOpaque(false);
-        add(textLyrics);    
-        textLyrics.setText("haloooooooo\nnohalo");
+
+        textLyrics=new JTextPane();   //创建歌词控件    
+        textLyrics.setBounds(400,200,200,200);//设置歌词控件大小
+        //设置字体大小
+        textLyrics.setFont(new Font("华文行楷", Font.PLAIN, 20));
+        //设为只读
+        textLyrics.setEditable(false);
+        textLyrics.setForeground(Color.white);//歌词控件字体颜色
+        textLyrics.setOpaque(false);//歌词控件透明
+        add(textLyrics);    //添加歌词控件至窗口中
+        textLyrics.setText("芙蓉花又栖满了枝头 \n"+"奈何蝶难留\n"+
+                        "漂泊如江水向东流\n"+"望断门前隔岸的杨柳 \n");//歌词控件添加文字
+        
+        Icon img2=new ImageIcon(".//time.jpg");     //创建图标对象
+        playTime = new JLabel(img2);	  		//创建播放进度条对象
+        playTime.setBounds(0,324,0,3);	  	//设置播放进度条对象大小	      
+        add(playTime); //添加播放进度条至窗口中
+
+        // textLyrics=new JTextPane();  
+        // textLyrics.setBounds(20,100,200,100);
+        // textLyrics.setForeground(Color.white);
+        // textLyrics.setOpaque(false);
+        // add(textLyrics);    
+        // textLyrics.setText("haloooooooo\nnohalo");
         
         addGuiComponents();
 
@@ -429,7 +447,7 @@ public class GUI extends JFrame {
                     // String songTitle = songTitle;
                     // String mvFilePath = "path/to/mv/" + songTitle + ".mp4";
                     JFileChooser fileChooser = new JFileChooser();
-                    fileChooser.setCurrentDirectory(new File("D:/ZY/Code/java/src/assets/mv"));
+                    fileChooser.setCurrentDirectory(new File("D:\\Code\\java\\musicplayer\\src\\assets\\mv"));
                     fileChooser.setDialogTitle("Select MV File");
                     int result = fileChooser.showOpenDialog(GUI.this);
                     if (result == JFileChooser.APPROVE_OPTION) {
